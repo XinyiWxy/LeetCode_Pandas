@@ -1,0 +1,7 @@
+import pandas as pd
+
+def count_occurrences(files: pd.DataFrame) -> pd.DataFrame:
+    file1 = files[files['content'].str.contains('\s+bull+\s', regex = True, case = False)]['file_name'].nunique()
+    file2 = files[files['content'].str.contains('\s+bear+\s', regex = True, case = False)]['file_name'].nunique()
+    return pd.DataFrame({'word':  ['bull', 'bear'],
+                         'count': [file1, file2]})
