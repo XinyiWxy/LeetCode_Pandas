@@ -1,0 +1,8 @@
+import pandas as pd
+
+def largest_orders(orders: pd.DataFrame) -> pd.DataFrame:
+    if orders.empty:
+        return pd.DataFrame({'customer_number' : []})
+    pf = orders.groupby(by = 'customer_number').size().reset_index( name = 'count')
+    pf = pf.sort_values( by = 'count', ascending = False)
+    return pf[['customer_number']][0:1]
